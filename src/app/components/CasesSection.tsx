@@ -41,7 +41,7 @@ function CaseCard({ item, i, onOpen }: { item: CaseItem; i: number; onOpen: () =
       className="group block rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
       onClick={onOpen}
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative aspect-video overflow-hidden">
         <motion.img
           src={item.img}
           alt={item.title}
@@ -94,25 +94,25 @@ export default function CasesSection() {
   const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
 
   const cases: CaseItem[] = [
-  {
-    title: "Evangelical Threads",
-    subtitle: "Premium",
-    description:
-      "Luxury-leaning brand template with fluid motion, product grid, and conversion-focused layout.",
-    img: "/images/et.png",
-    href: "https://www.evangelicalthreads.com",
-    tags: ["Next.js", "Tailwind", "Animations"],
-  },
-  {
-    title: "Dragon Grill",
-    subtitle: "Restaurant",
-    description:
-      "Modern restaurant site with responsive menu, clear CTAs, and image performance budget.",
-    img: "/images/dragon-grill.png",
-    href: "https://dragon-grill.vercel.app",
-    tags: ["Next.js", "SEO", "Image Opt"],
-  },
-];
+    {
+      title: "Evangelical Threads",
+      subtitle: "Premium",
+      description:
+        "Luxury-leaning brand template with fluid motion, product grid, and conversion-focused layout.",
+      img: "/images/et.png",
+      href: "https://www.evangelicalthreads.com",
+      tags: ["Next.js", "Tailwind", "Animations"],
+    },
+    {
+      title: "Dragon Grill",
+      subtitle: "Restaurant",
+      description:
+        "Modern restaurant site with responsive menu, clear CTAs, and image performance budget.",
+      img: "/images/dragon-grill.png",
+      href: "https://dragon-grill.vercel.app",
+      tags: ["Next.js", "SEO", "Image Opt"],
+    },
+  ];
 
   return (
     <section id="cases" data-section className="py-20 md:py-28 bg-neutral-50">
@@ -133,7 +133,7 @@ export default function CasesSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-7"
         >
           {cases.map((item, i) => (
             <CaseCard key={item.title} item={item} i={i} onOpen={() => setActiveCase(item)} />
@@ -161,13 +161,13 @@ export default function CasesSection() {
       <AnimatePresence>
         {activeCase && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-6 overflow-auto"
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 sm:p-6 overflow-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="relative max-w-5xl w-full flex flex-col md:flex-row items-center md:items-start bg-black rounded-2xl p-6"
+              className="relative max-w-full sm:max-w-5xl w-full flex flex-col md:flex-row items-center md:items-start bg-black rounded-2xl p-4 sm:p-6 overflow-auto"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
@@ -181,8 +181,8 @@ export default function CasesSection() {
                 <ArrowLeft className="w-6 h-6" /> Back
               </button>
 
-               {/* Image */}
-              <div className="w-full md:w-1/2 max-h-[75vh] overflow-hidden rounded-xl shadow-xl mb-6 md:mb-0">
+              {/* Image */}
+              <div className="w-full md:w-1/2 max-h-[70vh] overflow-hidden rounded-xl shadow-xl mb-6 md:mb-0">
                 <Image
                   src={activeCase.img}
                   alt={activeCase.title}
@@ -190,11 +190,10 @@ export default function CasesSection() {
                   height={800}
                   className="object-contain w-full h-full rounded-xl"
                 />
-            
               </div>
 
               {/* Text */}
-              <div className="w-full md:w-1/2 md:ml-8 text-white text-center md:text-left flex flex-col justify-between">
+              <div className="w-full md:w-1/2 md:ml-6 text-white text-center md:text-left flex flex-col justify-between">
                 <div>
                   <h3 className="text-3xl font-bold mb-2">{activeCase.title}</h3>
                   {activeCase.subtitle && (
