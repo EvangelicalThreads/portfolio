@@ -9,38 +9,46 @@
  */
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring, Variants } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import CasesSection from "./components/CasesSection"
+
 // --------------------------------------------------
 // Motion Variants (reusable)
 // --------------------------------------------------
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.42, 0, 0.58, 1] } 
+  },
 };
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.9, ease: "easeOut" } },
+  show: { 
+    opacity: 1, 
+    transition: { duration: 0.9, ease: [0.42, 0, 0.58, 1] } 
+  },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.18, delayChildren: 0.05 } },
 };
 
-const slideInLeft = {
+const slideInLeft: Variants = {
   hidden: { opacity: 0, x: -60 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.42, 0, 0.58, 1] } },
 };
 
-const slideInRight = {
+const slideInRight: Variants = {
   hidden: { opacity: 0, x: 60 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.42, 0, 0.58, 1] } },
 };
 
 // --------------------------------------------------
@@ -66,7 +74,6 @@ function useActiveSection(): SectionId {
       let current: SectionId = "home";
       sections.forEach((sec) => {
         const rect = sec.getBoundingClientRect();
-        // Look a bit below the top to avoid jitter
         if (rect.top <= 160 && rect.bottom >= 160) {
           current = (sec.getAttribute("id") as SectionId) || "home";
         }
@@ -110,7 +117,6 @@ function Navbar() {
         className="fixed top-0 left-0 right-0 bg-white/75 backdrop-blur-md z-50 border-b border-neutral-200"
       >
         <div className="mx-auto max-w-7xl px-5 md:px-8 py-4 flex items-center justify-between">
-          {/* Logo / Home */}
           <motion.button
             initial="hidden"
             animate="show"
@@ -122,7 +128,6 @@ function Navbar() {
             Katie Wang
           </motion.button>
 
-          {/* Desktop links */}
           <ul className="hidden sm:flex items-center gap-8 text-[15px] md:text-base text-neutral-700">
             {links.map((link) => (
               <li key={link.id}>
@@ -140,10 +145,9 @@ function Navbar() {
             ))}
           </ul>
 
-          {/* Availability pill / mobile hamburger */}
           <div className="hidden md:block">
             <span className="font-mono text-xs text-neutral-600">
-            *Available for work*
+              *Available for work*
             </span>
           </div>
           <button
@@ -156,7 +160,6 @@ function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile slide-in menu */}
       <motion.div
         initial={{ x: "100%" }}
         animate={{ x: mobileOpen ? 0 : "100%" }}
@@ -215,8 +218,7 @@ function ScrollProgressBar() {
 }
 
 // --------------------------------------------------
-// LittleGuy 3D model — KEEPING EXACT AS REQUESTED
-// Always generally facing forward, subtle sway/bounce
+// LittleGuy 3D model
 // --------------------------------------------------
 
 function LittleGuyModel() {
@@ -235,23 +237,14 @@ function LittleGuyModel() {
   });
 
   useFrame(({ clock }) => {
-  if (modelRef.current) {
-    const t = clock.elapsedTime;
-
-    // Bounce slightly up and down
-    modelRef.current.position.y = 0.2 * Math.abs(Math.sin(t * 3));
-
-    // Face forward (toward camera) + tiny life-like sway
-    modelRef.current.rotation.y = -Math.PI / 2 + 0.05 * Math.sin(t * 2); // rotate 90° to face camera
-
-    // Slight forward/backward tilt for liveliness
-    modelRef.current.rotation.x = 0.1 * Math.sin(t * 4);
-
-    // Keep it centered horizontally
-    modelRef.current.position.x = 0;
-  }
-});
-
+    if (modelRef.current) {
+      const t = clock.elapsedTime;
+      modelRef.current.position.y = 0.2 * Math.abs(Math.sin(t * 3));
+      modelRef.current.rotation.y = -Math.PI / 2 + 0.05 * Math.sin(t * 2);
+      modelRef.current.rotation.x = 0.1 * Math.sin(t * 4);
+      modelRef.current.position.x = 0;
+    }
+  });
 
   return <primitive ref={modelRef} object={scene} scale={2} />;
 }
@@ -279,7 +272,7 @@ function HeroSection() {
               variants={fadeInUp}
               className="font-mono text-xs md:text-sm text-neutral-600"
             >
-            *Available for work*
+              *Available for work*
             </motion.p>
 
             <motion.h1
@@ -399,6 +392,14 @@ function AboutSection() {
     </section>
   );
 }
+
+// --------------------------------------------------
+// Case Study Section
+// --------------------------------------------------
+
+// --------------------------------------------------
+// Big CTA ("Let’s connect")
+
 
 // --------------------------------------------------
 // --------------------------------------------------
