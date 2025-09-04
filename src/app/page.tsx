@@ -287,9 +287,12 @@ function HeroSection() {
               variants={fadeInUp}
               className="text-neutral-700 text-lg leading-relaxed max-w-xl"
             >
-              I design and code high-quality, performant web experiences. My
-              work balances clean aesthetics with robust engineering to create
-              interfaces that convert and delight.
+             I craft high-end web experiences for cafes, bringing each brand to life
+online. From sleek, modern layouts to cozy, inviting designs and
+minimalist interfaces, my work blends aesthetics with usability to
+showcase menus, ambiance, and personality, making every cafe memorable
+on the web.
+
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex gap-3">
@@ -370,22 +373,23 @@ function AboutSection() {
             className="md:col-span-8 space-y-6 text-neutral-700 text-lg leading-relaxed"
           >
             <p>
-              I craft accessible, pixel-perfect interfaces with a focus on
-              performance and detail. My sweet spot is the intersection of
-              design and engineering, the place where brand expression meets
-              technical excellence.
-            </p>
-            <p>
-              Recent work includes boutique brand sites and modern product
-              experiences in Next.js, TypeScript, and TailwindCSS. I care about
-              composable architecture, motion with intent, and systems that
-              scale.
-            </p>
-            <p className="text-neutral-600">
-              Beyond code, I draw, study interaction, and capture short visuals
-              that inform the feel of my builds. I like products that are calm,
-              respectful of attention, and fast.
-            </p>
+  I create standout websites for cafes that captivate visitors and
+  convert them into loyal customers. Every design balances personality
+  with performance—warm, modern, or minimalist, tailored to your brand.
+</p>
+<p>
+  Recent projects include boutique cafe sites built with Next.js,
+  TypeScript, and TailwindCSS. I focus on seamless navigation,
+  scalable architecture, and micro-interactions that make every click
+  feel intentional.
+</p>
+<p className="text-neutral-600">
+  Beyond code, I draw inspiration from cafe culture, study design
+  trends, and capture visuals that inform every pixel. My goal is to
+  craft online experiences that feel as inviting and memorable as your
+  best cup of coffee.
+</p>
+
           </motion.div>
         </motion.div>
       </div>
@@ -513,7 +517,7 @@ function ContactSection() {
               </a>
               <span aria-hidden>·</span>
               <a
-                href="mailto:katie.pg32@gmail.com"
+                href="mailto:katie.pg32@icloud.com"
                 className="hover:underline"
               >
                 Email

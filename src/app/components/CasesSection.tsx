@@ -94,25 +94,34 @@ export default function CasesSection() {
   const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
 
   const cases: CaseItem[] = [
-    {
-      title: "Evangelical Threads",
-      subtitle: "Premium",
-      description:
-        "Luxury-leaning brand template with fluid motion, product grid, and conversion-focused layout.",
-      img: "/images/et.png",
-      href: "https://www.evangelicalthreads.com",
-      tags: ["Next.js", "Tailwind", "Animations"],
-    },
-    {
-      title: "Dragon Grill",
-      subtitle: "Restaurant",
-      description:
-        "Modern restaurant site with responsive menu, clear CTAs, and image performance budget.",
-      img: "/images/dragon-grill.png",
-      href: "https://dragon-grill.vercel.app",
-      tags: ["Next.js", "SEO", "Image Opt"],
-    },
+  {
+  title: "Cafe Modern",
+  subtitle: "Style 1 – Modern",
+  description: "Clean, bold, and responsive design.",
+  img: "/mockup-1.png",
+  href: "https://cafehaven.vercel.app/homepage-1",
+  tags: ["Next.js", "Tailwind", "Responsive"],
+},
+{
+  title: "Cafe Cozy",
+  subtitle: "Style 2 – Cozy",
+  description: "Warm and inviting interface.",
+  img: "/mockup-2.png",
+  href: "https://cafehaven.vercel.app/homepage-2",
+  tags: ["Next.js", "Tailwind", "Friendly UI"],
+},
+{
+  title: "Cafe Minimalist",
+  subtitle: "Style 3 – Minimalist",
+  description: "Simple design with intuitive navigation.",
+  img: "/mockup-3.png",
+  href: "https://cafehaven.vercel.app/homepage-3",
+  tags: ["Next.js", "Tailwind", "Clean Layout"],
+},
+
+
   ];
+
 
   return (
     <section id="cases" data-section className="py-20 md:py-28 bg-neutral-50">
@@ -172,14 +181,15 @@ export default function CasesSection() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
               transition={{ duration: 0.4 }}
-            >
-              {/* Close button */}
-              <button
-                onClick={() => setActiveCase(null)}
-                className="absolute top-4 left-4 text-white flex items-center gap-2 z-50"
-              >
-                <ArrowLeft className="w-6 h-6" /> Back
-              </button>
+            >{/* Back button under image, left aligned */}
+<div className="mt-4 text-left">
+  <button
+    onClick={() => setActiveCase(null)}
+    className="text-white flex items-center gap-2 px-3 py-2 text-base md:text-base hover:underline transition"
+  >
+    <ArrowLeft className="w-6 h-6" /> Back
+  </button>
+</div>
 
               {/* Image */}
               <div className="w-full md:w-1/2 max-h-[70vh] overflow-hidden rounded-xl shadow-xl mb-6 md:mb-0">

@@ -46,7 +46,7 @@ function ProjectsNavbar({ projects }: { projects: { title: string; slug: string 
 
           <div className="hidden md:block">
             <span className="font-mono text-xs text-neutral-600">
-              *25 AUG — Available for work
+              *Available for work*
             </span>
           </div>
 
