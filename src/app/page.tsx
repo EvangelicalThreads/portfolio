@@ -13,7 +13,8 @@ import { motion, AnimatePresence, useScroll, useSpring, Variants } from "framer-
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import CasesSection from "./components/CasesSection"
+import CasesSection from "./components/CasesSection";
+import TestimonialsSection from "./components/TestimonialsSection";
 
 // --------------------------------------------------
 // Motion Variants (reusable)
@@ -258,7 +259,7 @@ function HeroSection() {
     <section
       id="home"
       data-section
-      className="min-h-[92vh] pt-24 md:pt-28 pb-12 bg-gradient-to-b from-white to-neutral-50 flex items-center"
+      className="min-h-[92vh] pt-24 md:pt-28 pb-20 bg-gradient-to-b from-white to-neutral-50 flex items-center"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8 w-full">
         <motion.div
@@ -618,6 +619,7 @@ export default function HomePage() {
         <HeroSection />
         <AboutSection />
         <CasesSection />
+         <TestimonialsSection /> 
         <CTASection />
         <ContactSection />
       </main>
